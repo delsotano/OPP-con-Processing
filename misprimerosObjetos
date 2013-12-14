@@ -1,0 +1,70 @@
+// Mi primer intento de crear Objetos
+// Es una chorrada, pero por algo hay que empezar
+
+// declaro los objetos y su clase
+Pelota P1;
+Pelota P2;
+
+void setup(){
+  
+  size(700,400);
+  smooth();
+  frameRate(60);
+  P1 = new Pelota(color(123,25,55),25,100,250,10); // color, diametro, xpos,ypos, velocidad
+  P2 = new Pelota(color(50,167,200),10,300,20,15);
+}
+
+void draw(){
+  
+  background(255); //borra la pantalla
+  P1.dibujo();
+  P1.actualizo();
+  P2.dibujo();
+  P2.actualizo();
+  
+}
+
+//ahora viene la definición de la clase y sus métodos.
+//con las variables temporales
+class Pelota { 
+  color c;
+  float x,y,d,v;
+  
+  // el constructor 
+  Pelota(color c_,float d_, float x_, float y_, float v_){
+  //variables adquieren los valores de las temporales
+  
+  c = c_;
+  
+  x = x_;
+  y = y_;
+  d = d_;
+  v = v_;
+  
+  // y ahora el contructor
+}
+
+// y ahora los métodos "dibujo y actualizo";
+
+void dibujo(){
+  
+  strokeWeight(3);
+  stroke(0);
+  fill(c);
+  ellipse(x,y,d,d);
+  
+}
+
+void actualizo(){
+  
+  x += v;
+  y += v;
+  
+  if (x > width) {
+    x = 0;
+  }
+  if (y > height) {
+    y = 0;}
+}
+}
+
