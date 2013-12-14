@@ -1,0 +1,86 @@
+//declaro los objetos; 'Car' es el nombre de la 'class'
+// y myCar1 y myCar2 son los nombres de los objetos
+
+Car myCar1;
+Car myCar2;
+
+void setup(){
+  
+  size(200,200);
+  // inicio los objetos dándole parámetros que irán después
+  // dentro de la 'class'
+  
+  myCar1 = new Car(color(255,0,0),0,100,20); // 'new' es lo que
+  // lo inicia y dentro van parámetros que después se crean
+  
+  myCar2 = new Car(color(0,0,255),0,10,1);  // con la misma
+  // 'class' 'Car' hemos creado dos Objetos con parámetros
+  // distintos
+  
+}
+
+void draw(){
+  
+  background(255); //blanco puro;
+  
+  myCar1.drive(); // método 'drive' del Objeto myCar1 que estará
+  // definido dentro de la 'class' Car
+  
+  myCar1.display(); // ahora es el método 'display'
+  
+  myCar2.drive();
+  myCar2.display(); // igual para el Objeto myCar2
+  
+}
+
+// y ahora definimos la 'class Car'
+// con una sóla 'class' que sirve para 2 Objetos
+
+class Car {
+  // variables de la 'class' que en este caso serán
+  // el color y las variables del tipo float posición X e Y
+  // y la velocidad en X
+  color c;
+  float xpos, ypos, xspeed;
+  
+  // Ahora viene la función "constructora" que es la que invocamos
+  // con el comando 'new'
+  // Además es donde se ponen los parámetros (argumentos) que
+  // han sido 'llamados' al iniciar el objeto.
+  
+  Car(color tempC, float tempXpos, float tempYpos, float tempXspeed){
+    // se usan variables 'temporales' para otorgar sus valores antes
+    // de que el "Objeto se convierta en un Objeto..." y así poder
+    // tener varios Objetos con una sola 'class'
+    
+    c = tempC;
+    xpos = tempXpos;
+    ypos = tempYpos;
+    xspeed = tempXspeed;
+  }
+    
+    // ahora definimos sus 'métodos'
+    
+    void display(){
+      // con este método "dibujamos el Objeto"
+      stroke(0);
+      fill(c);
+      rectMode(CENTER);
+      rect(xpos,ypos,20,10);
+    }
+    
+    void drive(){
+      // con este método "actualizamos el objeto"
+      
+      xpos += xspeed;
+      if (xpos > width) {
+        xpos = 0;
+        ypos++;
+        if (ypos > height) {
+          ypos = 0;
+        }
+      }
+    }
+  }
+  
+    
