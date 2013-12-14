@@ -1,0 +1,78 @@
+Coche miCoche1; //declaracion de miCoche1 y su clase Coche
+
+Coche miCoche2; // igual que lo anterior
+
+Coche miCoche3;
+
+
+void setup(){
+  
+  size(500,500);
+  miCoche1 = new Coche(20,0,10,10,2); // inicio de miCoche1 tamaño, xpos,ypos,xspeed,yspeed
+  miCoche2 = new Coche(25,0,15,12,3); // inicio de miCoche2
+  miCoche3 = new Coche(10,25,69,4.2,1.3);
+  
+}
+
+
+void draw(){
+  
+  background(252); // borra el fondo;
+
+ 
+  
+  miCoche1.dibujo(); //dibujo el coche1
+  miCoche1.actualizo(); //actualizo miCoche1
+  
+  miCoche2.dibujo();
+  miCoche2.actualizo();
+  
+  miCoche3.dibujo();
+  miCoche3.actualizo();
+  
+  line(miCoche1.xpos, miCoche1.ypos, miCoche2.xpos, miCoche2.ypos);
+  line(miCoche2.xpos, miCoche2.ypos, miCoche3.xpos, miCoche3.ypos);
+  
+  
+}
+
+class Coche{
+  
+  float tam, xpos, ypos, xspeed, yspeed;
+  
+  Coche(float _tam, float _xpos, float _ypos, float _xspeed, float _yspeed) {
+    
+    tam = _tam;
+    xpos = _xpos;
+    ypos = _ypos;
+    xspeed = _xspeed;
+    yspeed = _yspeed;
+  }
+  
+  void dibujo(){
+    
+    strokeWeight(1);
+    stroke(55);
+    fill(234,240,253);
+    rectMode(CENTER);
+    rect(xpos,ypos,tam+20,tam+4);
+  }
+  
+  
+  void actualizo(){
+    
+    xpos+=xspeed;
+    ypos+=yspeed;
+    
+    if (xpos > width || xpos < 0) {
+      xspeed *= -1;
+    }
+    
+    if (ypos > height || ypos < 0) {
+      yspeed *= -1;
+    }
+  }
+}
+    
+  
+  
