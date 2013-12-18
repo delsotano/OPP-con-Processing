@@ -1,0 +1,91 @@
+int longi = 6; // va a ser la longitud de mi Array
+
+Car[] cars = new Car[longi]; //declaro y creo el array 'cars' de 'class' Car
+
+void setup(){
+  
+  size(500,100);
+  
+  for (int i = 0 ; i < longi; i++) {
+    
+    cars[i] = new Car((i*20) +10, (random(4))); // uso el 'i' para crear los objetos 'car' que definiré más tarde, además uso 'i' para darle los valores en ypos de cada objeto 'car',
+   // y su velocidad la varío con random
+    
+  }
+  
+}
+
+
+void draw(){
+  
+  background(0);
+  
+  // uso el mismo for loop para usar los métodos de cada objeto 'cars' que definiré en la 'class' 'Cars'
+  for (int i = 0 ; i < longi; i++) {
+    
+    cars[i].dibujo();
+    cars[i].actualizo();
+  }
+}
+
+// Ahora viene la clase 'Car'
+
+class Car{
+  
+  // primero las variables de Car
+  
+  float xpos, ypos, w,h, speed;
+  
+  
+  //Ahora el constructor con sus variables temporales'pasadoras' de datos
+  
+  Car(float _ypos, float _speed){
+    
+    //inicio las variables
+    xpos = 0;
+    ypos = _ypos;
+    
+    w = 10;
+    h = 5;
+    
+    speed = _speed;
+    
+  }
+  
+  // los métodos
+  
+  void dibujo(){ // es el método que uso para dibujar
+    
+    rectMode(CENTER);
+    rect(xpos,ypos,w,h);
+    
+  }
+  
+  void actualizo(){
+    
+    // es el método que uso para actualizar
+    
+    xpos += speed ;// a x le sumo la velocidad
+    
+    if (xpos > width || xpos < 0 ) 
+            
+         { speed *= -1; } // si x se sale de los márgenes cambio el valor de  la velocidad
+  
+  
+  }
+
+} 
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
