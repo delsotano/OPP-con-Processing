@@ -1,0 +1,71 @@
+Coches[] coche = new Coches[3];
+
+void setup(){
+  
+  size(500,500);
+  coche[0] = new Coches(20,0,10,10,2); // inicio de miCoche1 tamaño, xpos,ypos,xspeed,yspeed
+ coche[1] = new Coches(25,0,15,12,3); // inicio de miCoche2
+  coche[2] = new Coches(10,25,69,4.2,1.3);
+  
+}
+
+
+void draw(){
+  
+  background(252); // borra el fondo;
+
+ 
+  
+  coche[0].dibujo(); //dibujo el coche1
+  coche[0].actualizo(); //actualizo miCoche1
+  
+  coche[1].dibujo();
+  coche[1].actualizo();
+  
+  coche[2].dibujo();
+  coche[2].actualizo();
+  
+  line(coche[0].xpos, coche[0].ypos, coche[1].xpos, coche[1].ypos);
+  line(coche[1].xpos, coche[1].ypos, coche[2].xpos, coche[2].ypos);
+  
+  
+}
+
+class Coches{
+  
+  float tam, xpos, ypos, xspeed, yspeed;
+  
+  Coches(float _tam, float _xpos, float _ypos, float _xspeed, float _yspeed) {
+    
+    tam = _tam;
+    xpos = _xpos;
+    ypos = _ypos;
+    xspeed = _xspeed;
+    yspeed = _yspeed;
+  }
+  
+  void dibujo(){
+    
+    strokeWeight(1);
+    stroke(55);
+    fill(234,240,253);
+    rectMode(CENTER);
+    rect(xpos,ypos,tam+20,tam+4);
+  }
+  
+  
+  void actualizo(){
+    
+    xpos+=xspeed;
+    ypos+=yspeed;
+    
+    if (xpos > width || xpos < 0) {
+      xspeed *= -1;
+    }
+    
+    if (ypos > height || ypos < 0) {
+      yspeed *= -1;
+    }
+  }
+}
+
