@@ -1,0 +1,57 @@
+Triangulo T1, T2, T3;
+
+void setup(){
+  smooth();
+  size(400,400);
+  background(137);
+  
+  T1 = new Triangulo(200);
+  T2 = new Triangulo(100);
+  T3 = new Triangulo(0);
+  
+}
+
+void draw(){
+   line(T1.xpos1, T1.ypos1, T2.xpos1, T2.ypos1);
+    line(T1.xpos2, T1.ypos2, T2.xpos3, T2.ypos3);
+  T1.dibuja();
+  T2.dibuja();
+  T1.actualiza();
+  T2.actualiza();
+  T3.dibuja();
+  T3.actualiza();
+  
+ 
+   
+}
+
+class Triangulo{
+  
+  float xpos1, ypos1, xpos2, xpos3, ypos2, ypos3, filler;
+
+  
+  Triangulo(float _filler){
+    
+    filler = _filler;
+    xpos1 = (random(width));
+    ypos1 = (random(height));
+    xpos2 = (random(width));
+    xpos3 = (random(width));
+    ypos2 = (random(height));
+    ypos3 = (random(height));
+  }
+  
+  void dibuja(){
+    
+    fill(filler);
+    triangle(xpos1,ypos1,xpos2,ypos2,xpos3,ypos3);
+  }
+  
+  void actualiza(){
+    filler++;
+    
+    if (filler > 255) { filler = 0; }
+  }
+}
+    
+    
