@@ -1,0 +1,65 @@
+int longi = 10; //separación de los triangulos
+int dist = 70; // tamaño lado triangulo
+
+Triangulo[][]  T = new Triangulo[longi][longi];
+
+void setup(){
+  noStroke();
+  frameRate(60);
+  background(127);
+  size(longi * dist ,longi * dist);
+  smooth();
+  
+  for (int i = 0; i < longi ; i ++) {
+    for (int j = 0; j < longi; j ++) {
+      
+      T[i][j] = new Triangulo((255/dist)*i, i*dist,j*dist);
+    }
+  }
+  
+  
+}
+
+void draw(){
+  
+  for (int i = 0; i < longi ; i ++) {
+    for (int j = 0; j < longi; j ++) {
+      
+      T[i][j].dibuja();
+      T[i][j].actualiza();
+    }
+  }
+  println(frameRate);
+}
+
+class Triangulo{
+  
+  int xpos1, ypos1, xpos2, xpos3, ypos2, ypos3;
+  float filler;
+
+  
+  Triangulo(float _filler, int _xpos, int _ypos){
+    
+    filler = _filler;
+    xpos1 = _xpos;
+    ypos1 = _ypos;
+    xpos2 = _xpos + dist;
+    xpos3 = _xpos + (dist/2);
+    ypos2 = _ypos;
+    ypos3 = _ypos + dist;
+  }
+  
+  void dibuja(){
+    
+    fill(filler);
+    triangle(xpos1,ypos1,xpos2,ypos2,xpos3,ypos3);
+  }
+  
+  void actualiza(){
+    filler++;
+    
+    if (filler > 255) { filler = 0; }
+  }
+}
+    
+    
