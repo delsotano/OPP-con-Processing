@@ -1,0 +1,45 @@
+   float a = 15.003;
+   float b = 95.3;
+   float x = random(width);
+   float y = random(height);
+   float r=23;
+   float g= 123.6;
+   float B = 233.556;
+
+void setup(){
+  
+  size(720,576);
+  smooth();
+  background(255);
+}
+
+void draw(){
+ 
+  noFill();
+  strokeCap(SQUARE);
+  strokeWeight(1);
+  stroke(r,B,g,12);
+  
+  arc(x,y, 200,200, radians(a),radians(b));
+  a+=1.02;
+  b+=1.02;
+  x+=1.04;
+  y+=2.78;
+  r+=0.2334;
+  B+=1.345;
+  g+=0.1234;
+  
+  if (x < 0 || x > width) {
+    x=0;}
+  if (y > height) {
+    y = 0;}
+  if (r > 255) {
+    r=0;
+  }
+  if (B>255) {
+    B=0;}
+    
+    if (g>255) {
+      g=0;}
+}
+
