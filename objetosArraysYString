@@ -1,0 +1,77 @@
+int numBolas= 15; // numero que controla la cantidad de bolas  
+Ball[] B = new Ball[numBolas]; //declaración y creación del Array
+PFont F; //declaración del objeto PFont para cargar el texto
+
+void setup(){
+  
+  size(600,300);
+  smooth();
+  F = createFont("Arial",12,true); //creación del objeto Pfont
+    for (int i = 0; i < numBolas; i++) { //creación de las bolas
+    B[i] = new Ball(i,random(width),random(height), random(3,9));
+  }
+  
+}
+
+void draw(){
+  background(255);
+  for (int i = 0; i < numBolas; i++) {
+    
+   B[i].display();
+   B[i].reload();
+  
+ 
+   
+  }
+ for (int j = 1 ; j < (numBolas) ; j++) {
+  
+   stroke(110);
+   line(B[j-1].xpos, B[j-1].ypos, B[j].xpos, B[j].ypos);}
+}
+
+class Ball{
+  int nombre;
+  float xpos, ypos, tam, speedX, speedY; 
+  
+  Ball(int _nombre, float _xpos, float _ypos, float _tam){
+    
+    nombre = _nombre;
+    xpos = _xpos;
+    ypos = _ypos;
+    tam = _tam;
+    speedX = (10/tam)*random(-1,1);
+    speedY = (10/tam)*random(-1,1);
+  }
+  
+  void display(){
+    
+    fill(tam+25,tam*2,tam*3);
+    ellipseMode(CENTER);
+    ellipse(xpos,ypos,tam,tam);
+    fill(0);
+    line(xpos,ypos +5,xpos,ypos+50);
+    textFont(F,9); //especificación de objeto PFont
+    fill(15);
+    text("B"+nombre, xpos, ypos+55);
+    textFont(F,5); //especificación de objeto PFont
+    text(ceil(xpos)+", "+ceil(ypos), xpos+20, ypos+55);
+    
+  }
+  
+  void reload(){
+    xpos += speedX;
+    ypos += speedY;
+   
+    if (xpos < 0 || xpos > width) {
+      speedX *= -1;
+    }
+    
+    if (ypos < 0 || ypos > height) {
+      
+      speedY *= -1;
+    }
+  }
+}
+    
+    
+  
