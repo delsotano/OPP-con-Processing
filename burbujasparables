@@ -1,0 +1,84 @@
+class Burbujas{
+  
+  float xpos, ypos, yspeed, tam;
+  
+  
+  Burbujas(){
+    
+    xpos = random(width);
+    ypos = height + tam;
+    
+    tam = random(20,67);
+    
+    activado = true;
+    
+  }
+  
+  void display(){
+    
+    ellipse(xpos,ypos,tam,tam);
+    
+  }
+  
+  void step(){
+    
+    if (activado) {
+      yspeed = random(1,3);
+      xpos = xpos + random(-4,4);
+      ypos -= yspeed;
+      
+      if (ypos < 0) {
+        
+        ypos= height + tam;
+      }
+    } else { // si "activado" es falso no se mueven
+      
+      yspeed = 0;
+    }
+    
+  }
+  
+}
+boolean activado;
+int total = 0;
+Burbujas[] B = new Burbujas[100];
+
+void setup(){
+  
+  size(500,500);
+  
+  for (int i = 0; i < B.length; i++) {
+    
+    B[i] = new Burbujas();
+    
+  }
+  
+}
+
+void mousePressed(){
+  
+  total +=1;
+}
+
+void keyPressed(){
+  
+  activado = !activado;
+  
+}
+
+void draw(){
+  
+  background(255);
+  
+  for (int i = 0 ; i < total ; i++) {
+    
+    B[i].display();
+    B[i].step();
+    
+  }
+  
+}
+
+  
+  
+    
