@@ -1,0 +1,73 @@
+class Burbuja{
+  
+  float xpos,ypos,tam, yspeed;
+  
+  Burbuja(){
+    
+    ypos = height + tam;
+    xpos = random(width);
+    tam = random(6,45);
+    yspeed= random(0.1,2);
+  }
+  
+  void display(){
+    ellipseMode(CENTER );
+    strokeWeight(1);
+    fill(177,15);
+    ellipse(xpos,ypos,tam,tam);
+    fill(255,10);
+    ellipse(xpos+((tam*0.25)*1.2), ypos-((tam*0.25)*1.2),tam/10,tam/10); //para que la segunda elipse esté sp a una distancia
+    
+  }
+  
+  void step(){
+    
+    xpos = xpos + random(-2,2);
+    ypos -= yspeed;
+    
+    if (ypos < 0) {
+      
+      ypos = height + tam;
+    }
+    
+  }
+}
+
+
+int numActual = 0;
+
+Burbuja[] burbu = new Burbuja[100];
+
+void setup(){
+  
+  size(600,400);
+  for (int i = 0; i < burbu.length; i++) {
+    
+    burbu[i] = new Burbuja();
+  }
+}
+
+void mousePressed(){
+  
+  numActual += 1;
+}
+
+void keyPressed(){
+  
+  numActual-=1;
+  
+}
+
+
+void draw(){
+  
+  background(255);
+  
+  for (int i = 0; i < numActual; i++){
+    
+    burbu[i].display();
+    burbu[i].step();
+    
+  }
+  
+}
