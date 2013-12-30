@@ -1,0 +1,29 @@
+void setup(){
+  
+  size(600,600);
+  background(255);
+  frameRate(25);
+}
+
+void draw(){
+  
+  float varx = randomGaussian(); //variacion salpicaduras en x
+  float x = mouseX; //posición trazo en x;
+  
+  float vary = randomGaussian(); // variación salpicaduras en y
+  float y = mouseY; // posición trazo en y
+  
+  float sdx =10; //desviación estandar
+  varx = (varx*sdx) + mouseX;
+  vary = (vary*sdx) + mouseY;
+  
+  noStroke();
+  
+ if (mousePressed) {
+   fill(255,200,100,175);
+   ellipse(mouseX,mouseY,15,15);
+   fill(240,100,70,150);
+   ellipse(varx,vary,sdx,sdx);
+ }
+ 
+}
