@@ -1,0 +1,64 @@
+class Bola{
+  
+  float x,y,px, py,easing, radio, sd, aleatorio;
+  
+  Bola(float _x,float _y){
+    
+    x= _x;
+    y = _y;
+    radio = random(15,50);
+    easing = random(0.02,0.19);
+     sd = 5; //desviacion estandar para separar
+     aleatorio = random(-1,1);
+    
+  }
+  
+  void display(){
+    
+    fill(0);
+    ellipse(x,y,radio,radio);
+    line(x,y,px,py);
+    
+  }
+  
+  void step(){
+    
+    
+    px = x; //almaceno el valor de x y de y
+    py = y;
+    
+    float targetx = mouseX; // estas variables están aquí porque debe moverse
+    float targety = mouseY;
+    
+    x += (targetx - x) * easing; //x apunta al raton
+    y += (targety -y ) * easing;
+    
+    x = (aleatorio*sd) + x; // separcion de x;
+    y = (aleatorio*sd) + y; 
+  }
+  
+}
+
+///
+
+int num = 20;
+Bola[] B = new Bola[num];
+
+void setup(){
+  smooth();
+  size(600,600);
+  for (int i = 0; i < num; i++) {
+    
+    B[i] = new Bola(random(width),random(height));
+  }
+}
+
+void draw(){
+  
+  background(255);
+  for (int i = 0; i < num; i++) {
+    B[i].display();
+    B[i].step();
+  }
+  
+}
