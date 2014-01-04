@@ -1,0 +1,21 @@
+// Primer ejercicio con el Perlin Noise
+// Sacado de The Nature of Code de Daniel Shiffman
+
+  float t = 0.0;
+void setup(){
+  
+  size(500,500);
+  
+}
+
+void draw(){
+  
+
+  
+  float xoff = t;
+  xoff+=0.62;
+  
+  
+  ellipse(noise(xoff)*width,noise(t)*height,50,50);
+  t+=0.01;
+}
