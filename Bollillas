@@ -1,0 +1,87 @@
+class Bolas {
+  
+  float x,y,px,py,radio1,radio2, r,g,b, sd, alea, easing;
+  
+  Bolas(float _x,Float _y){
+    
+    x = _x;
+    y = _y;
+    
+    radio1= random(35,60);
+    radio2 = random(10,20);
+    
+    r = random(255);
+    g = random(255);
+    b = random(255);
+    
+    sd = 25;
+    easing= random(0.01,0.09);
+    alea = randomGaussian();
+    
+  }
+  
+  void display(){
+    
+    fill(r,g,b);
+    ellipse(x,y,radio1,radio1);
+    fill(b,r,g);
+    ellipse(px,py,radio2,radio2);
+    line(x,y,px,py);
+    
+  }
+  
+  void step(){
+    
+    px = x;
+    py = y;
+    
+    float targetx = mouseX;
+    float targety = mouseY;
+    
+    x += (targetx - x) * easing;
+    y += (targety - y) * easing;
+    
+    //float alea = randomGaussian();
+    float dista = dist(px,py,x,y);
+    
+    dista += (dista * alea)+ sd;
+   
+    
+    if(dista > (targetx -x)){
+      x = px;}
+      
+      if (dista > (targety - y)){
+        
+        y = py;}
+        
+  }
+}
+
+////
+
+int num = 20;
+Bolas[] B = new Bolas[num];
+
+void setup(){
+  frameRate(25 );
+  size(500,500);
+  for (int i = 0; i < num; i++){
+    
+    B[i] = new Bolas(random(width),random(height));
+  }
+  
+}
+
+void draw(){
+  
+  background(255);
+  
+    for (int i = 0; i< num; i++) {
+      
+      B[i].display();
+      B[i].step();
+      
+    }
+    
+}
+
